@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CivicFix — Report. Track. Resolve.</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Mouse tracker -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- 3D Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar glass">
+    <div class="nav-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">CivicFix</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Dashboard</a></li>
+      <li><a href="pages/submit.html">Report Issue</a></li>
+      <li><a href="pages/tracker.html">Track</a></li>
+      <li><a href="pages/leaderboard.html">Leaderboard</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="pages/submit.html" class="btn-primary glow-btn">+ New Report</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge glass">🏛️ &nbsp; Civic Complaint Platform</div>
+      <h1 class="hero-title">
+        Your Voice.<br/>
+        <span class="gradient-text">Government Action.</span>
+      </h1>
+      <p class="hero-sub">Report civic issues, track resolutions, and hold authorities accountable — all in one transparent dashboard.</p>
+      <div class="hero-btns">
+        <a href="pages/submit.html" class="btn-primary glow-btn">File a Complaint</a>
+        <a href="pages/tracker.html" class="btn-ghost">Track Status →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-chip glass"><span class="stat-num" data-target="12480">0</span><span class="stat-label">Issues Filed</span></div>
+        <div class="stat-chip glass"><span class="stat-num" data-target="9302">0</span><span class="stat-label">Resolved</span></div>
+        <div class="stat-chip glass"><span class="stat-num" data-target="347">0</span><span class="stat-label">Departments</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="card-3d glass">
+        <div class="card-inner">
+          <div class="complaint-preview">
+            <div class="cp-header">
+              <span class="cp-id">#CF-7823</span>
+              <span class="status-badge status-progress">In Progress</span>
+            </div>
+            <p class="cp-title">Broken streetlight on MG Road near Sector 4</p>
+            <div class="cp-meta">
+              <span>🗺️ Delhi, Sector 4</span>
+              <span>⏱️ 2 days ago</span>
+            </div>
+            <div class="cp-progress">
+              <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+              <span>65% resolved</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar glass">
+    <div class="sbar-item">
+      <span class="sbar-dot dot-red"></span>
+      <span>Pending</span>
+      <strong>2,841</strong>
+    </div>
+    <div class="sbar-divider"></div>
+    <div class="sbar-item">
+      <span class="sbar-dot dot-yellow"></span>
+      <span>In Progress</span>
+      <strong>1,337</strong>
+    </div>
+    <div class="sbar-divider"></div>
+    <div class="sbar-item">
+      <span class="sbar-dot dot-green"></span>
+      <span>Resolved</span>
+      <strong>9,302</strong>
+    </div>
+    <div class="sbar-divider"></div>
+    <div class="sbar-item">
+      <span class="sbar-dot dot-blue"></span>
+      <span>Avg. Resolution</span>
+      <strong>4.2 days</strong>
+    </div>
+  </div>
+
+  <!-- Live Complaints Feed -->
+  <section class="section-complaints">
+    <div class="section-header">
+      <h2>Live Complaints Feed</h2>
+      <div class="filter-pills">
+        <button class="pill active" data-filter="all">All</button>
+        <button class="pill" data-filter="infrastructure">Infrastructure</button>
+        <button class="pill" data-filter="sanitation">Sanitation</button>
+        <button class="pill" data-filter="water">Water</button>
+        <button class="pill" data-filter="electricity">Electricity</button>
+      </div>
+    </div>
+    <div class="complaints-grid" id="complaintsGrid"></div>
+    <div class="view-all-wrap">
+      <a href="pages/tracker.html" class="btn-ghost">View All Complaints →</a>
+    </div>
+  </section>
+
+  <!-- Category Cards -->
+  <section class="section-categories">
+    <h2>Report by Category</h2>
+    <div class="categories-grid">
+      <a href="pages/submit.html?cat=roads" class="cat-card glass">
+        <div class="cat-icon">🛣️</div>
+        <div class="cat-name">Roads & Potholes</div>
+        <div class="cat-count">3,201 reports</div>
+      </a>
+      <a href="pages/submit.html?cat=water" class="cat-card glass">
+        <div class="cat-icon">💧</div>
+        <div class="cat-name">Water Supply</div>
+        <div class="cat-count">2,104 reports</div>
+      </a>
+      <a href="pages/submit.html?cat=electricity" class="cat-card glass">
+        <div class="cat-icon">⚡</div>
+        <div class="cat-name">Electricity</div>
+        <div class="cat-count">1,840 reports</div>
+      </a>
+      <a href="pages/submit.html?cat=sanitation" class="cat-card glass">
+        <div class="cat-icon">🗑️</div>
+        <div class="cat-name">Sanitation & Waste</div>
+        <div class="cat-count">1,523 reports</div>
+      </a>
+      <a href="pages/submit.html?cat=parks" class="cat-card glass">
+        <div class="cat-icon">🌿</div>
+        <div class="cat-name">Parks & Green Spaces</div>
+        <div class="cat-count">987 reports</div>
+      </a>
+      <a href="pages/submit.html?cat=safety" class="cat-card glass">
+        <div class="cat-icon">🚨</div>
+        <div class="cat-name">Public Safety</div>
+        <div class="cat-count">825 reports</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer glass">
+    <div class="footer-inner">
+      <div class="footer-logo">⬡ CivicFix</div>
+      <p>Bridging citizens and government through transparent accountability.</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+        <a href="#">API</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cursor.js"></script>
+  <script src="js/bg3d.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
